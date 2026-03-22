@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI scoreText;
     private int score;
 
-void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -30,5 +30,8 @@ void Awake()
         scoreText.text = score.ToString();
     }
 
-    public int GetScore() => score;
+    public int GetScore()
+    {
+        return score;
+    }
 }

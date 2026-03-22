@@ -24,7 +24,7 @@ public class PlatformSpawner : MonoBehaviour
         SpawnInitialPlatforms();
     }
 
-void Update()
+    void Update()
     {
         spawnTimer += Time.deltaTime;
         float multiplier = GameManager.Instance.SpeedMultiplier;
@@ -37,7 +37,7 @@ void Update()
         }
     }
 
-void SpawnInitialPlatforms()
+    void SpawnInitialPlatforms()
     {
         for (float x = 7f; x <= 35f; x += 7f)
         {
@@ -46,7 +46,7 @@ void SpawnInitialPlatforms()
         }
     }
 
-void SpawnPlatform()
+    void SpawnPlatform()
     {
         float y = GetNextY();
 
@@ -54,8 +54,14 @@ void SpawnPlatform()
             && ScoreManager.Instance.GetScore() >= smallPlatformMinScore
             && Random.value < smallPlatformChance;
 
-        GameObject prefab = useSmall ? smallPlatform : normalPlatform;
-        Instantiate(prefab, new Vector3(spawnX, y, 0f), Quaternion.identity);
+        if (useSmall)
+        {
+            Instantiate(smallPlatform, new Vector3(spawnX, y, 0f), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(normalPlatform, new Vector3(spawnX, y, 0f), Quaternion.identity);
+        }
     }
 
     float GetNextY()

@@ -16,11 +16,21 @@ public class GameManager : MonoBehaviour
     private bool isGameOver;
     private float elapsedTime;
 
-    public float CurrentSpeed => Mathf.Min(baseSpeed + elapsedTime * speedIncreaseRate, maxSpeed);
-    public float SpeedMultiplier => CurrentSpeed / baseSpeed;
-    public bool IsGameOver() => isGameOver;
+    public float CurrentSpeed
+    {
+        get { return Mathf.Min(baseSpeed + elapsedTime * speedIncreaseRate, maxSpeed); }
+    }
 
-void Awake()
+    public float SpeedMultiplier
+    {
+        get { return CurrentSpeed / baseSpeed; }
+    }
+    public bool IsGameOver()
+    {
+        return isGameOver;
+    }
+
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {
